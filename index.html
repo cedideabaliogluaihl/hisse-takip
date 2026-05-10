@@ -13,7 +13,6 @@
   --green:#00c98d;--green-bg:rgba(0,201,141,.1);
   --red:#ff5c5c;--red-bg:rgba(255,92,92,.1);
   --accent:#4f8cff;--accent-bg:rgba(79,140,255,.1);
-  --amber:#f5a623;--amber-bg:rgba(245,166,35,.1);
   --radius:12px;--radius-sm:8px;
   --font:'Syne',sans-serif;--mono:'DM Mono',monospace;
 }
@@ -21,32 +20,27 @@
 body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;line-height:1.5;}
 button{font-family:var(--font);cursor:pointer;border-radius:var(--radius-sm);transition:all .15s;}
 
-/* NAV */
 .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;background:rgba(13,15,18,.94);backdrop-filter:blur(12px);gap:10px;flex-wrap:wrap;}
 .nav-brand{font-size:15px;font-weight:700;letter-spacing:.06em;flex-shrink:0;}
 .nav-brand span{color:var(--accent);}
-.nav-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+.nav-right{display:flex;gap:10px;align-items:center;}
+.status-dot{width:8px;height:8px;border-radius:50%;background:var(--faint);flex-shrink:0;transition:background .3s;}
+.status-dot.online{background:var(--green);}
+.status-dot.error{background:var(--red);}
+.status-dot.syncing{background:var(--accent);animation:pulse 1s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+.status-label{font-size:11px;color:var(--muted);}
 
-/* SYNC BANNER */
-.sync-bar{display:flex;align-items:center;gap:10px;padding:10px 16px;background:var(--amber-bg);border-bottom:1px solid rgba(245,166,35,.2);font-size:12px;color:var(--amber);flex-wrap:wrap;}
-.sync-bar strong{font-weight:500;}
-.sync-bar .sync-btns{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap;}
-
-/* BUTTONS */
 .btn{font-size:12px;font-weight:500;padding:6px 14px;border-radius:var(--radius-sm);}
 .btn-ghost{border:1px solid var(--border2);background:transparent;color:var(--muted);}
 .btn-ghost:hover{background:var(--surface2);color:var(--text);}
 .btn-primary{border:none;background:var(--accent);color:#fff;}
 .btn-primary:hover{opacity:.85;}
-.btn-amber{border:1px solid rgba(245,166,35,.4);background:var(--amber-bg);color:var(--amber);}
-.btn-amber:hover{background:rgba(245,166,35,.2);}
 .btn-danger{font-size:11px;padding:4px 10px;border:1px solid rgba(255,92,92,.3);background:transparent;color:var(--red);}
 .btn-danger:hover{background:var(--red-bg);}
 
-/* CONTAINER */
 .container{max-width:1000px;margin:0 auto;padding:20px 14px 60px;}
 
-/* TICKER BAR */
 .ticker-bar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:18px;}
 .ticker-pill{font-family:var(--mono);font-size:12px;font-weight:500;padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;transition:all .15s;white-space:nowrap;}
 .ticker-pill:hover{border-color:var(--faint);color:var(--text);}
@@ -54,16 +48,13 @@ button{font-family:var(--font);cursor:pointer;border-radius:var(--radius-sm);tra
 .ticker-pill.add-pill{border-style:dashed;color:var(--faint);border-color:var(--faint);background:transparent;}
 .ticker-pill.add-pill:hover{color:var(--muted);border-color:var(--muted);}
 
-/* CARD */
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;animation:fadeUp .22s ease both;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(7px);}to{opacity:1;transform:translateY(0);}}
 .card+.card{margin-top:14px;}
 
-/* GRID */
 .main-grid{display:grid;grid-template-columns:1fr 310px;gap:14px;align-items:start;}
 @media(max-width:700px){.main-grid{grid-template-columns:1fr;}}
 
-/* HEADER */
 .hisse-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;gap:10px;flex-wrap:wrap;}
 .hisse-ticker{font-family:var(--mono);font-size:24px;font-weight:500;}
 .hisse-name{font-size:13px;color:var(--muted);margin-top:2px;}
@@ -73,7 +64,6 @@ button{font-family:var(--font);cursor:pointer;border-radius:var(--radius-sm);tra
 .price-chg.up{background:var(--green-bg);color:var(--green);}
 .price-chg.down{background:var(--red-bg);color:var(--red);}
 
-/* UPDATE ROW */
 .update-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:16px;padding:10px 12px;background:var(--surface2);border-radius:var(--radius-sm);}
 .update-row label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;}
 .price-field{font-family:var(--mono);font-size:14px;padding:6px 10px;border-radius:var(--radius-sm);border:1px solid var(--border2);background:var(--bg);color:var(--text);width:115px;outline:none;}
@@ -82,7 +72,6 @@ button{font-family:var(--font);cursor:pointer;border-radius:var(--radius-sm);tra
 .divider{border:none;border-top:1px solid var(--border);margin:16px 0;}
 .section-title{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
 
-/* CHARTS */
 .charts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;}
 .chart-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;transition:border-color .15s;}
 .chart-card:hover{border-color:var(--border2);}
@@ -97,14 +86,12 @@ button{font-family:var(--font);cursor:pointer;border-radius:var(--radius-sm);tra
 .upload-box span{font-size:12px;color:var(--muted);}
 .upload-box small{font-size:10px;color:var(--faint);}
 
-/* LIGHTBOX */
 .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:300;align-items:center;justify-content:center;backdrop-filter:blur(8px);}
 .lightbox.open{display:flex;}
 .lightbox img{max-width:94vw;max-height:90vh;border-radius:var(--radius);object-fit:contain;}
 .lb-close{position:fixed;top:16px;right:20px;font-size:30px;color:var(--muted);background:none;border:none;cursor:pointer;line-height:1;padding:4px 8px;}
 .lb-close:hover{color:var(--text);}
 
-/* COMMENTS */
 .comment-list{display:flex;flex-direction:column;gap:8px;max-height:260px;overflow-y:auto;margin-bottom:12px;padding-right:2px;}
 .comment-list::-webkit-scrollbar{width:3px;}
 .comment-list::-webkit-scrollbar-thumb{background:var(--faint);border-radius:2px;}
@@ -131,7 +118,6 @@ button{font-family:var(--font);cursor:pointer;border-radius:var(--radius-sm);tra
 .form-submit{width:100%;font-size:13px;font-weight:500;padding:9px;border:1px solid var(--accent);background:var(--accent-bg);color:var(--accent);}
 .form-submit:hover{background:var(--accent);color:#fff;}
 
-/* MODAL */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
 .modal-overlay.open{display:flex;}
 .modal{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);padding:22px;width:min(400px,92vw);animation:fadeUp .2s ease;}
@@ -143,79 +129,28 @@ button{font-family:var(--font);cursor:pointer;border-radius:var(--radius-sm);tra
 
 .no-stock{text-align:center;padding:60px 20px;color:var(--muted);font-size:14px;}
 .no-stock .icon{font-size:36px;opacity:.2;margin-bottom:12px;}
-
-/* SYNC MODAL */
-.sync-modal-body{display:flex;flex-direction:column;gap:16px;}
-.sync-option{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;display:flex;align-items:flex-start;gap:12px;}
-.sync-option-icon{font-size:22px;line-height:1;flex-shrink:0;margin-top:2px;}
-.sync-option-text h4{font-size:13px;font-weight:500;margin-bottom:4px;}
-.sync-option-text p{font-size:12px;color:var(--muted);line-height:1.5;}
-.sync-option-btn{margin-top:10px;}
+.loading{text-align:center;padding:60px 20px;color:var(--muted);font-size:13px;}
 </style>
 </head>
 <body>
 
 <nav class="nav">
   <div class="nav-brand">HİSSE<span>.</span>TAKİP</div>
-  <div class="nav-actions">
-    <button class="btn btn-amber" id="syncBtn">⇄ Senkronizasyon</button>
+  <div class="nav-right">
+    <div class="status-dot" id="statusDot"></div>
+    <span class="status-label" id="statusLabel">Bağlanıyor…</span>
     <button class="btn btn-primary" id="openAddModal">+ Hisse Ekle</button>
   </div>
 </nav>
 
-<!-- SYNC BANNER — ilk açılışta göster -->
-<div class="sync-bar" id="syncBanner" style="display:none">
-  <strong>💡 Cihazlar arası senkronizasyon:</strong> Telefonda yaptığın değişiklikleri PC'ye aktarmak için önce telefondan "Dışa Aktar", sonra PC'de "İçe Aktar" yap.
-  <div class="sync-btns">
-    <button class="btn btn-amber" id="bannerExport">↓ Dışa Aktar</button>
-    <button class="btn btn-ghost" id="bannerDismiss">Tamam</button>
-  </div>
-</div>
-
 <div class="container">
   <div class="ticker-bar" id="tickerBar"></div>
-  <div id="stockView"></div>
+  <div id="stockView"><div class="loading">Yükleniyor…</div></div>
 </div>
 
-<!-- Lightbox -->
 <div class="lightbox" id="lightbox">
   <button class="lb-close" id="lbClose">×</button>
   <img id="lbImg" src="" alt=""/>
-</div>
-
-<!-- Modal: Senkronizasyon -->
-<div class="modal-overlay" id="syncModal">
-  <div class="modal" style="width:min(480px,94vw)">
-    <div class="modal-title">⇄ Cihazlar Arası Senkronizasyon</div>
-    <div class="sync-modal-body">
-      <div class="sync-option">
-        <div class="sync-option-icon">📤</div>
-        <div class="sync-option-text">
-          <h4>Dışa Aktar — Bu cihazdan gönder</h4>
-          <p>Tüm hisseler, yorumlar ve grafikler tek bir .json dosyasına kaydedilir. Bu dosyayı WhatsApp, Mail veya Drive ile diğer cihaza gönder.</p>
-          <button class="btn btn-amber sync-option-btn" id="modalExport">↓ .json Dosyası İndir</button>
-        </div>
-      </div>
-      <div class="sync-option">
-        <div class="sync-option-icon">📥</div>
-        <div class="sync-option-text">
-          <h4>İçe Aktar — Diğer cihazdan gelen dosya</h4>
-          <p>Başka cihazdan aldığın .json dosyasını seç. Mevcut verilerle birleştirilir, hiçbir şey silinmez.</p>
-          <button class="btn btn-ghost sync-option-btn" id="modalImport">Dosya Seç…</button>
-        </div>
-      </div>
-      <div class="sync-option" style="background:transparent;border-style:dashed;">
-        <div class="sync-option-icon">☁️</div>
-        <div class="sync-option-text">
-          <h4>Otomatik senkronizasyon</h4>
-          <p>Google Drive, iCloud veya Dropbox'a kaydettiğin .json dosyasını her iki cihazda da "İçe Aktar" ile yükle. Güncelleme yaptığında tekrar dışa aktarıp üstüne kaydet.</p>
-        </div>
-      </div>
-    </div>
-    <div style="margin-top:16px;text-align:right">
-      <button class="btn btn-ghost" id="closeSyncModal">Kapat</button>
-    </div>
-  </div>
 </div>
 
 <!-- Modal: Hisse Ekle -->
@@ -239,40 +174,68 @@ button{font-family:var(--font);cursor:pointer;border-radius:var(--radius-sm);tra
   </div>
 </div>
 
-<!-- Hidden inputs -->
 <input type="file" id="chartFileInput" accept="image/*" multiple style="display:none"/>
-<input type="file" id="importFileInput" accept=".json,application/json" style="display:none"/>
 
 <script>
-const LS={stocks:'ht_stocks',comments:'ht_comments',charts:'ht_charts',current:'ht_current',seen:'ht_seen'};
-function load(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch{return d;}}
-function save(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){alert('Depolama hatası: '+e.message);}}
+const SUPABASE_URL = 'https://yadjyjpfrxcqhonzgjln.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_jzBUDqVWkgcOi8MLmXSuVg_z9jYV4-B';
+
+const api = (path, opts={}) => fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
+  headers: {
+    'apikey': SUPABASE_KEY,
+    'Authorization': `Bearer ${SUPABASE_KEY}`,
+    'Content-Type': 'application/json',
+    'Prefer': opts.prefer || '',
+    ...(opts.headers||{})
+  },
+  ...opts
+});
+
 function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
-let stocks   = load(LS.stocks,  {THYAO:{name:'Türk Hava Yolları',price:'',prevPrice:'',exchange:'BIST',note:''},GARAN:{name:'Garanti Bankası',price:'',prevPrice:'',exchange:'BIST',note:''}});
-let comments = load(LS.comments,{});
-let charts   = load(LS.charts,  {});
-let current  = localStorage.getItem(LS.current)||Object.keys(stocks)[0]||'';
+let stocks=[], comments=[], charts=[];
+let current='';
 
-// İlk açılışta banner göster
-if(!localStorage.getItem(LS.seen)){
-  document.getElementById('syncBanner').style.display='flex';
+// ── STATUS ───────────────────────────────────────────────
+function setStatus(state, label){
+  const dot=document.getElementById('statusDot');
+  const lbl=document.getElementById('statusLabel');
+  dot.className='status-dot '+(state||'');
+  lbl.textContent=label;
 }
-document.getElementById('bannerDismiss').onclick=()=>{
-  document.getElementById('syncBanner').style.display='none';
-  localStorage.setItem(LS.seen,'1');
-};
-document.getElementById('bannerExport').onclick=()=>doExport();
+
+// ── FETCH ALL ────────────────────────────────────────────
+async function fetchAll(){
+  setStatus('syncing','Senkronize ediliyor…');
+  try{
+    const [sRes,cRes,gRes] = await Promise.all([
+      api('stocks?order=id'),
+      api('comments?order=ts'),
+      api('charts?order=id'),
+    ]);
+    if(!sRes.ok) throw new Error('stocks: '+sRes.status);
+    stocks   = await sRes.json();
+    comments = await cRes.json();
+    charts   = await gRes.json();
+    if(!current && stocks.length) current=stocks[0].id;
+    setStatus('online','Bağlı');
+    renderAll();
+  }catch(e){
+    setStatus('error','Bağlantı hatası');
+    console.error(e);
+    document.getElementById('stockView').innerHTML='<div class="no-stock"><div class="icon">⚠️</div>Supabase\'e bağlanılamadı.<br><small style="font-size:11px;color:var(--faint)">'+e.message+'</small></div>';
+  }
+}
 
 // ── TICKERS ──────────────────────────────────────────────
 function renderTickers(){
   const bar=document.getElementById('tickerBar');
   bar.innerHTML='';
-  Object.keys(stocks).forEach(t=>{
+  stocks.forEach(s=>{
     const b=document.createElement('button');
-    b.className='ticker-pill'+(t===current?' active':'');
-    b.textContent=t; b.title=stocks[t].name;
-    b.onclick=()=>{current=t;save(LS.current,t);renderAll();};
+    b.className='ticker-pill'+(s.id===current?' active':'');
+    b.textContent=s.id; b.title=s.name;
+    b.onclick=()=>{current=s.id;renderAll();};
     bar.appendChild(b);
   });
   const add=document.createElement('button');
@@ -284,13 +247,13 @@ function renderTickers(){
 // ── STOCK VIEW ───────────────────────────────────────────
 function renderStockView(){
   const view=document.getElementById('stockView');
-  if(!current||!stocks[current]){
+  const s=stocks.find(x=>x.id===current);
+  if(!s){
     view.innerHTML='<div class="no-stock"><div class="icon">📊</div>Henüz hisse eklenmedi.</div>';
     return;
   }
-  const s=stocks[current];
-  const price=s.price!==''&&s.price!=null?parseFloat(s.price):null;
-  const prev=s.prevPrice!==''&&s.prevPrice!=null?parseFloat(s.prevPrice):null;
+  const price=s.price!=null?parseFloat(s.price):null;
+  const prev=s.prev_price!=null?parseFloat(s.prev_price):null;
   let chgHtml='';
   if(price!==null&&prev!==null&&prev!==0){
     const p=((price-prev)/prev*100).toFixed(2);
@@ -302,7 +265,7 @@ function renderStockView(){
       <div class="card">
         <div class="hisse-header">
           <div>
-            <div class="hisse-ticker">${esc(current)}</div>
+            <div class="hisse-ticker">${esc(s.id)}</div>
             <div class="hisse-name">${esc(s.name)}${s.exchange?' · '+esc(s.exchange):''}</div>
           </div>
           <div class="price-block">
@@ -312,7 +275,7 @@ function renderStockView(){
         </div>
         <div class="update-row">
           <label>Fiyat güncelle</label>
-          <input type="number" class="price-field" id="newPrice" step="0.01" placeholder="Yeni fiyat (₺)" value="${price!==null?price:''}"/>
+          <input type="number" class="price-field" id="newPrice" step="0.01" placeholder="Yeni fiyat" value="${price!==null?price:''}"/>
           <button class="btn btn-ghost" id="updatePriceBtn" style="font-size:12px;padding:6px 12px">Kaydet</button>
           <button class="btn-danger" id="deleteStockBtn" style="margin-left:auto">Hisseyi Sil</button>
         </div>
@@ -342,35 +305,46 @@ function renderStockView(){
     </div>
   </div>`;
 
-  document.getElementById('updatePriceBtn').onclick=()=>{
+  document.getElementById('updatePriceBtn').onclick=async()=>{
     const val=document.getElementById('newPrice').value.trim();
     const n=val!==''?parseFloat(val):null;
     if(val!==''&&isNaN(n))return;
-    if(stocks[current].price!==''&&stocks[current].price!=null) stocks[current].prevPrice=stocks[current].price;
-    stocks[current].price=n!==null?n:'';
-    save(LS.stocks,stocks);renderAll();
+    setStatus('syncing','Kaydediliyor…');
+    await api(`stocks?id=eq.${current}`,{
+      method:'PATCH', prefer:'return=minimal',
+      body:JSON.stringify({price:n, prev_price:s.price, updated_at:new Date().toISOString()})
+    });
+    await fetchAll();
   };
-  document.getElementById('deleteStockBtn').onclick=()=>{
+
+  document.getElementById('deleteStockBtn').onclick=async()=>{
     if(!confirm(current+' hissesini silmek istiyor musunuz?'))return;
-    delete stocks[current];delete comments[current];delete charts[current];
-    save(LS.stocks,stocks);save(LS.comments,comments);save(LS.charts,charts);
-    current=Object.keys(stocks)[0]||'';save(LS.current,current);renderAll();
+    setStatus('syncing','Siliniyor…');
+    await Promise.all([
+      api(`stocks?id=eq.${current}`,{method:'DELETE'}),
+      api(`comments?ticker=eq.${current}`,{method:'DELETE'}),
+      api(`charts?ticker=eq.${current}`,{method:'DELETE'}),
+    ]);
+    current='';
+    await fetchAll();
   };
+
   document.getElementById('addCommentBtn').onclick=addComment;
-  renderCharts();renderComments();
+  renderCharts();
+  renderComments();
 }
 
 // ── CHARTS ───────────────────────────────────────────────
 function renderCharts(){
   const grid=document.getElementById('chartsGrid');
   if(!grid)return;
-  const list=charts[current]||[];
-  grid.innerHTML=list.map((c,i)=>`
+  const list=charts.filter(c=>c.ticker===current);
+  grid.innerHTML=list.map(c=>`
     <div class="chart-card">
-      <img src="${c.dataUrl}" alt="${esc(c.label)}" data-i="${i}"/>
+      <img src="${c.data_url}" alt="${esc(c.label)}" />
       <div class="chart-card-footer">
         <span class="chart-label" title="${esc(c.label)}">${esc(c.label)}</span>
-        <button class="chart-del" data-i="${i}">×</button>
+        <button class="chart-del" data-id="${c.id}">×</button>
       </div>
     </div>`).join('')+`
   <div class="upload-box" id="uploadBox">
@@ -386,42 +360,47 @@ function renderCharts(){
     img.onclick=()=>{document.getElementById('lbImg').src=img.src;document.getElementById('lightbox').classList.add('open');};
   });
   grid.querySelectorAll('.chart-del').forEach(btn=>{
-    btn.onclick=e=>{e.stopPropagation();charts[current].splice(+btn.dataset.i,1);save(LS.charts,charts);renderCharts();};
+    btn.onclick=async e=>{
+      e.stopPropagation();
+      setStatus('syncing','Siliniyor…');
+      await api(`charts?id=eq.${btn.dataset.id}`,{method:'DELETE'});
+      await fetchAll();
+    };
   });
   document.getElementById('uploadBox').onclick=()=>document.getElementById('chartFileInput').click();
 }
 
-document.getElementById('chartFileInput').onchange=function(){
+document.getElementById('chartFileInput').onchange=async function(){
   const files=Array.from(this.files);if(!files.length)return;
-  let done=0;
-  files.forEach(file=>{
+  setStatus('syncing','Yükleniyor…');
+  const reads=files.map(file=>new Promise(res=>{
     const r=new FileReader();
-    r.onload=e=>{
-      if(!charts[current])charts[current]=[];
-      charts[current].push({label:file.name.replace(/\.[^.]+$/,'').slice(0,50),dataUrl:e.target.result});
-      if(++done===files.length){save(LS.charts,charts);renderCharts();}
-    };
+    r.onload=e=>res({ticker:current,label:file.name.replace(/\.[^.]+$/,'').slice(0,50),data_url:e.target.result});
     r.readAsDataURL(file);
+  }));
+  const rows=await Promise.all(reads);
+  await api('charts',{
+    method:'POST', prefer:'return=minimal',
+    body:JSON.stringify(rows)
   });
   this.value='';
+  await fetchAll();
 };
 
-// Lightbox
 document.getElementById('lbClose').onclick=()=>document.getElementById('lightbox').classList.remove('open');
 document.getElementById('lightbox').onclick=function(e){if(e.target===this)this.classList.remove('open');};
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElementById('lightbox').classList.remove('open');['syncModal','addModal'].forEach(closeM);}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElementById('lightbox').classList.remove('open');closeM('addModal');}});
 
 // ── COMMENTS ─────────────────────────────────────────────
 function renderComments(){
   const list=document.getElementById('commentList');
   if(!list)return;
-  const tc=(comments[current]||[]).slice().reverse();
+  const tc=comments.filter(c=>c.ticker===current).slice().reverse();
   if(!tc.length){list.innerHTML='<div class="empty-state">Henüz yorum eklenmedi.</div>';return;}
-  list.innerHTML=tc.map((c,ri)=>{
-    const i=(comments[current].length-1)-ri;
+  list.innerHTML=tc.map(c=>{
     const sl=c.sentiment==='bull'?'Yükseliş':c.sentiment==='bear'?'Düşüş':'Nötr';
     return `<div class="comment-item ${c.sentiment}">
-      <button class="del-btn" data-i="${i}">×</button>
+      <button class="del-btn" data-id="${c.id}">×</button>
       <div class="comment-meta">
         <span class="sent-label ${c.sentiment}">${sl}</span>
         <span class="comment-date">${c.date}</span>
@@ -431,114 +410,68 @@ function renderComments(){
     </div>`;
   }).join('');
   list.querySelectorAll('.del-btn').forEach(btn=>{
-    btn.onclick=()=>{comments[current].splice(+btn.dataset.i,1);save(LS.comments,comments);renderComments();};
+    btn.onclick=async()=>{
+      setStatus('syncing','Siliniyor…');
+      await api(`comments?id=eq.${btn.dataset.id}`,{method:'DELETE'});
+      await fetchAll();
+    };
   });
 }
 
-function addComment(){
+async function addComment(){
   const text=document.getElementById('commentText').value.trim();
   if(!text||!current)return;
   const sentiment=document.getElementById('sentimentSel').value;
   const price=document.getElementById('priceInput').value.trim();
   const date=new Date().toLocaleDateString('tr-TR',{day:'2-digit',month:'short',year:'numeric'});
-  if(!comments[current])comments[current]=[];
-  comments[current].push({text,sentiment,price,date,ts:Date.now()});
-  save(LS.comments,comments);
+  setStatus('syncing','Kaydediliyor…');
+  await api('comments',{
+    method:'POST', prefer:'return=minimal',
+    body:JSON.stringify({ticker:current,text,sentiment,price,date,ts:Date.now()})
+  });
   document.getElementById('commentText').value='';
   document.getElementById('priceInput').value='';
-  renderComments();
+  await fetchAll();
 }
-
-// ── EXPORT ───────────────────────────────────────────────
-function doExport(){
-  const data=JSON.stringify({stocks,comments,charts,exportedAt:new Date().toISOString()},null,2);
-  const blob=new Blob([data],{type:'application/json'});
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);
-  a.download='hisse-takip-'+new Date().toISOString().slice(0,10)+'.json';
-  a.click();
-}
-
-// ── IMPORT (dosya seç) ───────────────────────────────────
-function doImportFromFile(){
-  document.getElementById('importFileInput').click();
-}
-
-document.getElementById('importFileInput').onchange=function(){
-  const file=this.files[0];if(!file)return;
-  const r=new FileReader();
-  r.onload=e=>{
-    try{
-      const d=JSON.parse(e.target.result);
-      // Merge — mevcut veriyle birleştir, üstüne yaz
-      if(d.stocks){
-        Object.keys(d.stocks).forEach(k=>{
-          stocks[k]=d.stocks[k];
-        });
-        save(LS.stocks,stocks);
-      }
-      if(d.comments){
-        Object.keys(d.comments).forEach(k=>{
-          if(!comments[k]) comments[k]=[];
-          // Timestamp'e göre duplicate engelle
-          const existing=new Set((comments[k]||[]).map(c=>c.ts));
-          (d.comments[k]||[]).forEach(c=>{ if(!existing.has(c.ts)) comments[k].push(c); });
-          comments[k].sort((a,b)=>(a.ts||0)-(b.ts||0));
-        });
-        save(LS.comments,comments);
-      }
-      if(d.charts){
-        Object.keys(d.charts).forEach(k=>{
-          if(!charts[k]) charts[k]=[];
-          // Label bazlı duplicate engelle
-          const existing=new Set((charts[k]||[]).map(c=>c.label));
-          (d.charts[k]||[]).forEach(c=>{ if(!existing.has(c.label)) charts[k].push(c); });
-        });
-        save(LS.charts,charts);
-      }
-      current=Object.keys(stocks)[0]||'';
-      save(LS.current,current);
-      closeM('syncModal');
-      renderAll();
-      alert('✓ Veriler başarıyla içe aktarıldı.');
-    }catch{alert('Geçersiz dosya formatı.');}
-  };
-  r.readAsText(file);
-  this.value='';
-};
 
 // ── MODALS ───────────────────────────────────────────────
 function openM(id){document.getElementById(id).classList.add('open');}
 function closeM(id){document.getElementById(id).classList.remove('open');}
 
-document.getElementById('syncBtn').onclick=()=>openM('syncModal');
-document.getElementById('closeSyncModal').onclick=()=>closeM('syncModal');
-document.getElementById('syncModal').onclick=e=>{if(e.target===e.currentTarget)closeM('syncModal');};
-document.getElementById('modalExport').onclick=()=>doExport();
-document.getElementById('modalImport').onclick=()=>doImportFromFile();
-
 document.getElementById('openAddModal').onclick=()=>openM('addModal');
 document.getElementById('closeAddModal').onclick=()=>closeM('addModal');
 document.getElementById('addModal').onclick=e=>{if(e.target===e.currentTarget)closeM('addModal');};
 
-document.getElementById('saveModal').onclick=()=>{
+document.getElementById('saveModal').onclick=async()=>{
   const code=document.getElementById('m_code').value.trim().toUpperCase();
   const name=document.getElementById('m_name').value.trim();
   if(!code||!name){alert('Hisse kodu ve isim zorunludur.');return;}
   const price=document.getElementById('m_price').value.trim();
-  stocks[code]={name,price:price!==''?parseFloat(price):'',prevPrice:'',exchange:document.getElementById('m_exchange').value.trim()||'BIST',note:document.getElementById('m_note').value.trim()};
-  save(LS.stocks,stocks);
-  current=code;save(LS.current,current);
+  const exchange=document.getElementById('m_exchange').value.trim()||'BIST';
+  const note=document.getElementById('m_note').value.trim();
+  setStatus('syncing','Kaydediliyor…');
+  await api('stocks',{
+    method:'POST', prefer:'resolution=merge-duplicates,return=minimal',
+    body:JSON.stringify({id:code,name,price:price!==''?parseFloat(price):null,prev_price:null,exchange,note})
+  });
+  current=code;
   ['m_code','m_name','m_price','m_exchange','m_note'].forEach(id=>document.getElementById(id).value='');
-  closeM('addModal');renderAll();
+  closeM('addModal');
+  await fetchAll();
 };
+
+// ── REALTIME (polling) ───────────────────────────────────
+// Her 30 saniyede bir otomatik senkronize et
+setInterval(fetchAll, 30000);
 
 // ── INIT ─────────────────────────────────────────────────
 function renderAll(){
-  if(!stocks[current]&&Object.keys(stocks).length)current=Object.keys(stocks)[0];
-  renderTickers();renderStockView();
+  if(!stocks.find(x=>x.id===current)&&stocks.length) current=stocks[0].id;
+  renderTickers();
+  renderStockView();
 }
-renderAll();
+
+fetchAll();
 </script>
 </body>
 </html>
