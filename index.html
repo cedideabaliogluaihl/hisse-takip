@@ -21,7 +21,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:1
 button{font-family:var(--font);cursor:pointer;border-radius:var(--radius-sm);transition:all .15s;}
 
 .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;background:rgba(13,15,18,.94);backdrop-filter:blur(12px);gap:10px;flex-wrap:wrap;}
-.nav-brand{font-size:15px;font-weight:700;letter-spacing:.06em;flex-shrink:0;}
+.nav-brand{font-size:15px;font-weight:700;letter-spacing:.06em;}
 .nav-brand span{color:var(--accent);}
 .nav-right{display:flex;gap:10px;align-items:center;}
 .status-dot{width:8px;height:8px;border-radius:50%;background:var(--faint);flex-shrink:0;transition:background .3s;}
@@ -57,7 +57,7 @@ button{font-family:var(--font);cursor:pointer;border-radius:var(--radius-sm);tra
 
 .hisse-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;gap:10px;flex-wrap:wrap;}
 .hisse-ticker{font-family:var(--mono);font-size:24px;font-weight:500;}
-.hisse-name{font-size:13px;color:var(--muted);margin-top:2px;}
+.hisse-sub{font-size:13px;color:var(--muted);margin-top:2px;}
 .price-block{text-align:right;}
 .price-val{font-family:var(--mono);font-size:26px;font-weight:500;}
 .price-chg{display:inline-block;font-family:var(--mono);font-size:12px;padding:3px 10px;border-radius:20px;margin-top:4px;font-weight:500;}
@@ -72,6 +72,7 @@ button{font-family:var(--font);cursor:pointer;border-radius:var(--radius-sm);tra
 .divider{border:none;border-top:1px solid var(--border);margin:16px 0;}
 .section-title{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
 
+/* CHARTS */
 .charts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;}
 .chart-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;transition:border-color .15s;}
 .chart-card:hover{border-color:var(--border2);}
@@ -86,27 +87,43 @@ button{font-family:var(--font);cursor:pointer;border-radius:var(--radius-sm);tra
 .upload-box span{font-size:12px;color:var(--muted);}
 .upload-box small{font-size:10px;color:var(--faint);}
 
+/* LIGHTBOX */
 .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:300;align-items:center;justify-content:center;backdrop-filter:blur(8px);}
 .lightbox.open{display:flex;}
 .lightbox img{max-width:94vw;max-height:90vh;border-radius:var(--radius);object-fit:contain;}
 .lb-close{position:fixed;top:16px;right:20px;font-size:30px;color:var(--muted);background:none;border:none;cursor:pointer;line-height:1;padding:4px 8px;}
 .lb-close:hover{color:var(--text);}
 
-.comment-list{display:flex;flex-direction:column;gap:8px;max-height:260px;overflow-y:auto;margin-bottom:12px;padding-right:2px;}
+/* COMMENTS */
+.comment-list{display:flex;flex-direction:column;gap:8px;max-height:320px;overflow-y:auto;margin-bottom:12px;padding-right:2px;}
 .comment-list::-webkit-scrollbar{width:3px;}
 .comment-list::-webkit-scrollbar-thumb{background:var(--faint);border-radius:2px;}
 .comment-item{background:var(--surface2);border-radius:var(--radius-sm);padding:10px 12px;border-left:2px solid transparent;position:relative;}
 .comment-item.bull{border-left-color:var(--green);}
 .comment-item.bear{border-left-color:var(--red);}
 .comment-item.neutral{border-left-color:var(--faint);}
+.comment-item.editing{border-color:var(--accent);outline:1px solid var(--accent);}
 .comment-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;}
 .sent-label{font-size:10px;letter-spacing:.05em;text-transform:uppercase;font-weight:500;}
 .sent-label.bull{color:var(--green);}.sent-label.bear{color:var(--red);}.sent-label.neutral{color:var(--muted);}
 .comment-date{font-family:var(--mono);font-size:10px;color:var(--faint);}
 .comment-price-tag{font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:4px;}
 .comment-text{font-size:13px;color:var(--text);line-height:1.55;}
-.del-btn{position:absolute;top:8px;right:8px;background:none;border:none;color:var(--faint);font-size:14px;line-height:1;padding:2px 4px;cursor:pointer;}
-.del-btn:hover{color:var(--red);}
+.comment-actions{position:absolute;top:8px;right:8px;display:flex;gap:4px;}
+.icon-btn{background:none;border:none;color:var(--faint);font-size:13px;line-height:1;padding:2px 5px;cursor:pointer;border-radius:4px;}
+.icon-btn:hover{background:var(--surface);color:var(--text);}
+.icon-btn.red:hover{color:var(--red);}
+
+/* Edit inline */
+.edit-area{display:flex;flex-direction:column;gap:6px;margin-top:6px;}
+.edit-row{display:flex;gap:6px;flex-wrap:wrap;}
+.edit-select,.edit-input{font-family:var(--font);font-size:12px;padding:5px 8px;border-radius:var(--radius-sm);border:1px solid var(--border2);background:var(--bg);color:var(--text);flex:1;min-width:80px;outline:none;}
+.edit-select:focus,.edit-input:focus{border-color:var(--accent);}
+.edit-textarea{font-family:var(--font);font-size:13px;width:100%;padding:7px 10px;border-radius:var(--radius-sm);border:1px solid var(--accent);background:var(--bg);color:var(--text);resize:vertical;min-height:60px;outline:none;line-height:1.5;}
+.edit-btns{display:flex;gap:6px;justify-content:flex-end;}
+.edit-save{font-size:12px;padding:5px 14px;border:none;background:var(--accent);color:#fff;}
+.edit-cancel{font-size:12px;padding:5px 12px;border:1px solid var(--border2);background:transparent;color:var(--muted);}
+
 .empty-state{font-size:12px;color:var(--faint);text-align:center;padding:18px 0;}
 
 .form-section{border-top:1px solid var(--border);padding-top:12px;}
@@ -118,9 +135,10 @@ button{font-family:var(--font);cursor:pointer;border-radius:var(--radius-sm);tra
 .form-submit{width:100%;font-size:13px;font-weight:500;padding:9px;border:1px solid var(--accent);background:var(--accent-bg);color:var(--accent);}
 .form-submit:hover{background:var(--accent);color:#fff;}
 
+/* MODAL */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
 .modal-overlay.open{display:flex;}
-.modal{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);padding:22px;width:min(400px,92vw);animation:fadeUp .2s ease;}
+.modal{background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius);padding:22px;width:min(380px,92vw);animation:fadeUp .2s ease;}
 .modal-title{font-size:15px;font-weight:700;margin-bottom:14px;}
 .modal label{font-size:12px;color:var(--muted);display:block;margin-bottom:4px;margin-top:10px;}
 .modal .form-input{width:100%;display:block;}
@@ -159,8 +177,6 @@ button{font-family:var(--font);cursor:pointer;border-radius:var(--radius-sm);tra
     <div class="modal-title">Yeni Hisse Ekle</div>
     <label>Hisse Kodu *</label>
     <input class="form-input" id="m_code" placeholder="THYAO"/>
-    <label>Şirket Adı *</label>
-    <input class="form-input" id="m_name" placeholder="Türk Hava Yolları"/>
     <label>Güncel Fiyat (₺)</label>
     <input class="form-input" id="m_price" type="number" step="0.01" placeholder="298.50"/>
     <label>Borsa</label>
@@ -181,11 +197,11 @@ const SUPABASE_URL = 'https://yadjyjpfrxcqhonzgjln.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_jzBUDqVWkgcOi8MLmXSuVg_z9jYV4-B';
 
 const api = (path, opts={}) => fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
-  headers: {
+  headers:{
     'apikey': SUPABASE_KEY,
     'Authorization': `Bearer ${SUPABASE_KEY}`,
     'Content-Type': 'application/json',
-    'Prefer': opts.prefer || '',
+    'Prefer': opts.prefer||'',
     ...(opts.headers||{})
   },
   ...opts
@@ -195,35 +211,31 @@ function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').
 
 let stocks=[], comments=[], charts=[];
 let current='';
+let editingCommentId=null;
 
-// ── STATUS ───────────────────────────────────────────────
-function setStatus(state, label){
-  const dot=document.getElementById('statusDot');
-  const lbl=document.getElementById('statusLabel');
-  dot.className='status-dot '+(state||'');
-  lbl.textContent=label;
+function setStatus(state,label){
+  document.getElementById('statusDot').className='status-dot '+(state||'');
+  document.getElementById('statusLabel').textContent=label;
 }
 
-// ── FETCH ALL ────────────────────────────────────────────
 async function fetchAll(){
   setStatus('syncing','Senkronize ediliyor…');
   try{
-    const [sRes,cRes,gRes] = await Promise.all([
+    const [sRes,cRes,gRes]=await Promise.all([
       api('stocks?order=id'),
       api('comments?order=ts'),
       api('charts?order=id'),
     ]);
     if(!sRes.ok) throw new Error('stocks: '+sRes.status);
-    stocks   = await sRes.json();
-    comments = await cRes.json();
-    charts   = await gRes.json();
-    if(!current && stocks.length) current=stocks[0].id;
+    stocks=await sRes.json();
+    comments=await cRes.json();
+    charts=await gRes.json();
+    if(!current&&stocks.length) current=stocks[0].id;
     setStatus('online','Bağlı');
     renderAll();
   }catch(e){
     setStatus('error','Bağlantı hatası');
-    console.error(e);
-    document.getElementById('stockView').innerHTML='<div class="no-stock"><div class="icon">⚠️</div>Supabase\'e bağlanılamadı.<br><small style="font-size:11px;color:var(--faint)">'+e.message+'</small></div>';
+    document.getElementById('stockView').innerHTML=`<div class="no-stock"><div class="icon">⚠️</div>Bağlantı hatası.<br><small style="font-size:11px;color:var(--faint)">${e.message}</small></div>`;
   }
 }
 
@@ -234,8 +246,8 @@ function renderTickers(){
   stocks.forEach(s=>{
     const b=document.createElement('button');
     b.className='ticker-pill'+(s.id===current?' active':'');
-    b.textContent=s.id; b.title=s.name;
-    b.onclick=()=>{current=s.id;renderAll();};
+    b.textContent=s.id;
+    b.onclick=()=>{current=s.id;editingCommentId=null;renderAll();};
     bar.appendChild(b);
   });
   const add=document.createElement('button');
@@ -248,10 +260,7 @@ function renderTickers(){
 function renderStockView(){
   const view=document.getElementById('stockView');
   const s=stocks.find(x=>x.id===current);
-  if(!s){
-    view.innerHTML='<div class="no-stock"><div class="icon">📊</div>Henüz hisse eklenmedi.</div>';
-    return;
-  }
+  if(!s){view.innerHTML='<div class="no-stock"><div class="icon">📊</div>Henüz hisse eklenmedi.</div>';return;}
   const price=s.price!=null?parseFloat(s.price):null;
   const prev=s.prev_price!=null?parseFloat(s.prev_price):null;
   let chgHtml='';
@@ -266,7 +275,7 @@ function renderStockView(){
         <div class="hisse-header">
           <div>
             <div class="hisse-ticker">${esc(s.id)}</div>
-            <div class="hisse-name">${esc(s.name)}${s.exchange?' · '+esc(s.exchange):''}</div>
+            ${s.exchange?`<div class="hisse-sub">${esc(s.exchange)}</div>`:''}
           </div>
           <div class="price-block">
             <div class="price-val">${price!==null?price.toFixed(2)+' ₺':'—'}</div>
@@ -311,8 +320,8 @@ function renderStockView(){
     if(val!==''&&isNaN(n))return;
     setStatus('syncing','Kaydediliyor…');
     await api(`stocks?id=eq.${current}`,{
-      method:'PATCH', prefer:'return=minimal',
-      body:JSON.stringify({price:n, prev_price:s.price, updated_at:new Date().toISOString()})
+      method:'PATCH',prefer:'return=minimal',
+      body:JSON.stringify({price:n,prev_price:s.price,updated_at:new Date().toISOString()})
     });
     await fetchAll();
   };
@@ -341,7 +350,7 @@ function renderCharts(){
   const list=charts.filter(c=>c.ticker===current);
   grid.innerHTML=list.map(c=>`
     <div class="chart-card">
-      <img src="${c.data_url}" alt="${esc(c.label)}" />
+      <img src="${c.data_url}" alt="${esc(c.label)}"/>
       <div class="chart-card-footer">
         <span class="chart-label" title="${esc(c.label)}">${esc(c.label)}</span>
         <button class="chart-del" data-id="${c.id}">×</button>
@@ -373,16 +382,13 @@ function renderCharts(){
 document.getElementById('chartFileInput').onchange=async function(){
   const files=Array.from(this.files);if(!files.length)return;
   setStatus('syncing','Yükleniyor…');
-  const reads=files.map(file=>new Promise(res=>{
+  const reads=files.map(f=>new Promise(res=>{
     const r=new FileReader();
-    r.onload=e=>res({ticker:current,label:file.name.replace(/\.[^.]+$/,'').slice(0,50),data_url:e.target.result});
-    r.readAsDataURL(file);
+    r.onload=e=>res({ticker:current,label:f.name.replace(/\.[^.]+$/,'').slice(0,50),data_url:e.target.result});
+    r.readAsDataURL(f);
   }));
   const rows=await Promise.all(reads);
-  await api('charts',{
-    method:'POST', prefer:'return=minimal',
-    body:JSON.stringify(rows)
-  });
+  await api('charts',{method:'POST',prefer:'return=minimal',body:JSON.stringify(rows)});
   this.value='';
   await fetchAll();
 };
@@ -397,22 +403,72 @@ function renderComments(){
   if(!list)return;
   const tc=comments.filter(c=>c.ticker===current).slice().reverse();
   if(!tc.length){list.innerHTML='<div class="empty-state">Henüz yorum eklenmedi.</div>';return;}
+
   list.innerHTML=tc.map(c=>{
     const sl=c.sentiment==='bull'?'Yükseliş':c.sentiment==='bear'?'Düşüş':'Nötr';
-    return `<div class="comment-item ${c.sentiment}">
-      <button class="del-btn" data-id="${c.id}">×</button>
-      <div class="comment-meta">
-        <span class="sent-label ${c.sentiment}">${sl}</span>
-        <span class="comment-date">${c.date}</span>
-      </div>
-      ${c.price?`<div class="comment-price-tag">@ ${esc(c.price)} ₺</div>`:''}
-      <div class="comment-text">${esc(c.text).replace(/\n/g,'<br>')}</div>
+    const isEditing=editingCommentId===c.id;
+    return `<div class="comment-item ${c.sentiment}${isEditing?' editing':''}" data-id="${c.id}">
+      ${isEditing?`
+        <div class="edit-area">
+          <div class="edit-row">
+            <select class="edit-select" id="es_${c.id}">
+              <option value="bull"${c.sentiment==='bull'?' selected':''}>▲ Yükseliş</option>
+              <option value="bear"${c.sentiment==='bear'?' selected':''}>▼ Düşüş</option>
+              <option value="neutral"${c.sentiment==='neutral'?' selected':''}>→ Nötr</option>
+            </select>
+            <input class="edit-input" id="ep_${c.id}" type="number" step="0.01" placeholder="@ Fiyat" value="${esc(c.price||'')}"/>
+          </div>
+          <textarea class="edit-textarea" id="et_${c.id}">${esc(c.text)}</textarea>
+          <div class="edit-btns">
+            <button class="edit-cancel btn" data-id="${c.id}">İptal</button>
+            <button class="edit-save btn" data-id="${c.id}">Kaydet</button>
+          </div>
+        </div>
+      `:`
+        <div class="comment-actions">
+          <button class="icon-btn" data-edit="${c.id}" title="Düzenle">✎</button>
+          <button class="icon-btn red" data-del="${c.id}" title="Sil">×</button>
+        </div>
+        <div class="comment-meta">
+          <span class="sent-label ${c.sentiment}">${sl}</span>
+          <span class="comment-date">${c.date}</span>
+        </div>
+        ${c.price?`<div class="comment-price-tag">@ ${esc(c.price)} ₺</div>`:''}
+        <div class="comment-text">${esc(c.text).replace(/\n/g,'<br>')}</div>
+      `}
     </div>`;
   }).join('');
-  list.querySelectorAll('.del-btn').forEach(btn=>{
+
+  // Düzenle butonu
+  list.querySelectorAll('[data-edit]').forEach(btn=>{
+    btn.onclick=()=>{editingCommentId=+btn.dataset.edit;renderComments();};
+  });
+  // İptal
+  list.querySelectorAll('.edit-cancel').forEach(btn=>{
+    btn.onclick=()=>{editingCommentId=null;renderComments();};
+  });
+  // Kaydet
+  list.querySelectorAll('.edit-save').forEach(btn=>{
+    btn.onclick=async()=>{
+      const id=+btn.dataset.id;
+      const text=document.getElementById('et_'+id).value.trim();
+      if(!text)return;
+      const sentiment=document.getElementById('es_'+id).value;
+      const price=document.getElementById('ep_'+id).value.trim();
+      setStatus('syncing','Kaydediliyor…');
+      await api(`comments?id=eq.${id}`,{
+        method:'PATCH',prefer:'return=minimal',
+        body:JSON.stringify({text,sentiment,price})
+      });
+      editingCommentId=null;
+      await fetchAll();
+    };
+  });
+  // Sil
+  list.querySelectorAll('[data-del]').forEach(btn=>{
     btn.onclick=async()=>{
       setStatus('syncing','Siliniyor…');
-      await api(`comments?id=eq.${btn.dataset.id}`,{method:'DELETE'});
+      await api(`comments?id=eq.${btn.dataset.del}`,{method:'DELETE'});
       await fetchAll();
     };
   });
@@ -426,7 +482,7 @@ async function addComment(){
   const date=new Date().toLocaleDateString('tr-TR',{day:'2-digit',month:'short',year:'numeric'});
   setStatus('syncing','Kaydediliyor…');
   await api('comments',{
-    method:'POST', prefer:'return=minimal',
+    method:'POST',prefer:'return=minimal',
     body:JSON.stringify({ticker:current,text,sentiment,price,date,ts:Date.now()})
   });
   document.getElementById('commentText').value='';
@@ -444,27 +500,23 @@ document.getElementById('addModal').onclick=e=>{if(e.target===e.currentTarget)cl
 
 document.getElementById('saveModal').onclick=async()=>{
   const code=document.getElementById('m_code').value.trim().toUpperCase();
-  const name=document.getElementById('m_name').value.trim();
-  if(!code||!name){alert('Hisse kodu ve isim zorunludur.');return;}
+  if(!code){alert('Hisse kodu zorunludur.');return;}
   const price=document.getElementById('m_price').value.trim();
   const exchange=document.getElementById('m_exchange').value.trim()||'BIST';
   const note=document.getElementById('m_note').value.trim();
   setStatus('syncing','Kaydediliyor…');
   await api('stocks',{
-    method:'POST', prefer:'resolution=merge-duplicates,return=minimal',
-    body:JSON.stringify({id:code,name,price:price!==''?parseFloat(price):null,prev_price:null,exchange,note})
+    method:'POST',prefer:'resolution=merge-duplicates,return=minimal',
+    body:JSON.stringify({id:code,name:code,price:price!==''?parseFloat(price):null,prev_price:null,exchange,note})
   });
   current=code;
-  ['m_code','m_name','m_price','m_exchange','m_note'].forEach(id=>document.getElementById(id).value='');
+  ['m_code','m_price','m_exchange','m_note'].forEach(id=>document.getElementById(id).value='');
   closeM('addModal');
   await fetchAll();
 };
 
-// ── REALTIME (polling) ───────────────────────────────────
-// Her 30 saniyede bir otomatik senkronize et
-setInterval(fetchAll, 30000);
+setInterval(fetchAll,30000);
 
-// ── INIT ─────────────────────────────────────────────────
 function renderAll(){
   if(!stocks.find(x=>x.id===current)&&stocks.length) current=stocks[0].id;
   renderTickers();
